@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'iic3103-t1-cpgarrido.wsgi.application'
+WSGI_APPLICATION = 'iic3103-t1.wsgi.application'
 
 
 # Database
@@ -128,4 +128,4 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Activate Django-Heroku.
-#django_heroku.settings(locals())
+django_heroku.settings(locals())

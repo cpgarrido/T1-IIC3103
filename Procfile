@@ -1,1 +1,1 @@
-web: gunicorn iic3103-t1-cpgarrido.wsgi
+web: gunicorn iic3103-t1.wsgi
