@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>T1:tallerdeintegración</title>
+    <form action="{%url 'index' %}"> 
+        {% csrf_token %}
+        <button type="submit">
+            Inicio
+        </button>
+    </form>
+    <form method="POST"  action="{%url 'buscar_personaje' %}"> 
+        {% csrf_token %}
+        <input type="search" placeholder=" Buscar personaje"  name ="person">
+        <button type="submit">
+            Buscar
+        </button>
+    </form>
+
+<h1>{{personaje.name}}</h1> 
+    <h3> Nickname: {{personaje.nickname}}</h3>
+    <img src= {{personaje.img}} style="max-width: 20%;" >
+    <tbody></tbody>
+    <ul>
+    <li> Ocupación:</li>
+    <ul>
+        {%for rol in personaje.occupation%}
+        <li>{{ rol }}</li>
+        {%endfor%}
+    </ul>
+    <li> Actor/Actriz: {{personaje.portrayed}}</li>
+    <li> Staus: {{personaje.status}}</li>
+    <li> Apariciones en Breaking Bad en las tempororadas:</li>
+    <ul>
+    {%for season in personaje.appearance%}
+        <li><a href ="{%url 'episodios' serie2 season%}">Temporada {{season}}</a></li>
+    {%endfor%}
+    </ul>
+    <li> Apariciones en Better Call Saul en las temporadas:</li>
+    <ul>
+    {%for season in personaje.better_call_saul_appearance%}
+        <li><a href ="{%url 'episodios' serie1 season%}">Temporada {{season}}</a></li>
+    {%endfor%}
+    </ul>
+    <li> Citas:</li>
+    <ul>
+    {%for cita in citas%}
+        <li> Cita:  {{cita.quote}}, {{cita.series}} </li>
+    {%endfor%}
+       
+    </ul>
+    </ul>
+</body>

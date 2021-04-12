@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<title>T1:tallerdeintegración</title>
+<form > 
+    {% csrf_token %}
+    <button type="submit">
+        Inicio
+    </button>
+</form>
+<form method="POST"  action="{%url 'buscar_personaje' %}"> 
+    {% csrf_token %}
+    <input type="search" placeholder=" Buscar personaje"  name ="person">
+    <button type="submit">
+        Buscar
+    </button>
+</form>
+</head>
+<body>
+<h1>{{serie}}</h1> 
+    <h3> {{episodio.title}}</h3>
+    <tbody></tbody>
+    <ul>
+    <li> Temporada {{episodio.season}}</li>
+    <li> Episodio {{episodio.episode}}</li>
+    <li> Fecha que salió al aire: {{episodio.air_date}}</li>
+    <li> Personajes:</li>
+    
+    <ul>
+        {%for caracter in episodio.characters%}
+        <li><a href ="{%url 'personaje' caracter%}"> {{caracter}}</a></li>
+        {%endfor%}
+    </ul>
+    
+    </ul>
+</body>

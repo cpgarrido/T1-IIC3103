@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>T1:tallerdeintegración</title>
+    <form > 
+        {% csrf_token %}
+        <button type="submit">
+            Inicio
+        </button>
+    </form>
+    <form method="POST"  action="{%url 'buscar_personaje' %}"> 
+        {% csrf_token %}
+        <input type="search" placeholder=" Buscar personaje"  name ="person">
+        <button type="submit">
+            Buscar
+        </button>
+    </form>
+</head>
+<body>
+<h1>Búsqueda de {{busqueda}}</h1> 
+    <tbody></tbody>
+    <ul>
+    <ul>
+        {%for caracter in personajes%}
+        <li><a href ="{%url 'personaje' caracter.name%}"> {{caracter.name}}</a></li>
+        {%endfor%}
+    </ul>
+    
+    </ul>
+</body>

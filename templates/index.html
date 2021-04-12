@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>T1:tallerdeintegración</title>
+    <form method="POST"  action="{%url 'buscar_personaje' %}"> 
+        {% csrf_token %}
+        <input type="search" placeholder=" Buscar personaje"  name ="person">
+        <button type="submit">
+            Buscar
+        </button>
+    </form>
+</head>
+<body>
+<h1>BIENVENIDO</h1> 
+    <h2>{{serie1}}</h2>
+    <img src= /bb/templates/imagen/bb.jpeg style="max-width: 50%;" >
+    <h3>TEMPORADAS</h3>
+    <tbody></tbody>
+    <ul>
+    {% for temporada in temporadas_bcl%}
+    <li><a href ="{%url 'episodios' serie1 temporada%}">Temporada {{temporada }}</a></li>
+    {% endfor%} 
+    </ul>
+
+    <h2>{{serie2}}</h2>
+    <img src= "/bb/templates/imagen/bcl.png" style="max-width: 50%;" >
+    <h3>TEMPORADAS</h3>
+    <tbody></tbody>
+    <ul>
+    {% for temporada in temporadas_bb%}  
+    <li><a href ="{%url 'episodios' serie2 temporada%}">Temporada {{temporada }}</a></li>
+    {% endfor%} 
+    </ul>
+</body>
