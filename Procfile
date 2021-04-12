@@ -1,1 +1,1 @@
-web: gunicorn iic3103-t1.wsgi
+web: gunicorn bb.wsgi

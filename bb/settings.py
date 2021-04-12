@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'iic3103-t1.wsgi.application'
+WSGI_APPLICATION = 'bb.wsgi.application'
 
 
 # Database
