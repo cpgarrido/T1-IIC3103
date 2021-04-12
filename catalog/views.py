@@ -2,6 +2,22 @@ from django.shortcuts import render, redirect
 import requests
 from datetime import date
 
+def paginacion(data, offset):
+    data_nueva = data
+    offset = offset
+    while True:
+        URL = 'https://tarea-1-breaking-bad.herokuapp.com/api/characters?limit=10&offset='+str(offset)
+        data = requests.get(URL) 
+        data = data.json() 
+        if len(data)== 0:
+            break
+        else:
+            offset+=10
+            data_nueva +=data
+            return paginacion(data_nueva, offset)
+            
+    return data_nueva
+
 def current_date_format(date):
     months = ("Enero", "Febrero", "Marzo", "Abri", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
     day = date.day
@@ -99,15 +115,19 @@ def buscar_personaje(request):
     if request.method == "POST":
         persona = request.POST['person']
         print(persona)
-        nombre_personaje = "+".join(persona.split(" "))
-        URL = 'https://tarea-1-breaking-bad.herokuapp.com/api/characters?name='+nombre_personaje
-        dato = requests.get(URL) 
-        dato = dato.json()
+        persona = persona.lower()
+        data = paginacion([], 0)
+        caracteres = []
+        print(data)
+        for personaje in data:
+            if persona in personaje["name"].lower():
+                caracteres.append(personaje)
+        print(caracteres)
         context = {
             "serie1": "BETTER CALL SAUL",
             "serie2": "BREAKING BAD",
             "busqueda": persona,
-            "personajes": dato
+            "personajes": caracteres
         }
         return render(request, "lista_personajes.html", context)
     else:
